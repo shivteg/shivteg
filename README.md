@@ -54,6 +54,23 @@ Make sure you have Node.js installed to run the local dev server.
 
 ---
 
+## 🔗 Supabase Authentication Configuration
+
+To connect this website to your live **Supabase** backend:
+
+1. Open [script.js](file:///C:/Users/user/shivteg/script.js) and locate the configuration variables at the top:
+   ```javascript
+   const SUPABASE_URL = "https://your-project-id.supabase.co";
+   const SUPABASE_ANON_KEY = "your-anon-key-here";
+   ```
+2. Replace these strings with your actual **Supabase API URL** and **Anonymous Public Key** from your Supabase dashboard (Project Settings > API).
+3. Ensure that **Email Authentication** is enabled in your Supabase project under *Authentication > Providers*.
+4. Once configured, the website will automatically connect to your database for live `signUp`, `signInWithPassword`, and `signOut` user sessions!
+
+*Note: If the placeholders are left intact, the application automatically falls back to local-storage session simulation so it remains testable.*
+
+---
+
 ## 📬 Contact & Connect
 
 *   **Email**: [tegworkmail@gmail.com](mailto:tegworkmail@gmail.com)

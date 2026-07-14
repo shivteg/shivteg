@@ -1,5 +1,26 @@
 // JavaScript Interactions for Shivteg Portfolio
 
+// ==========================================
+// SUPABASE CONFIGURATION - REPLACE WITH YOURS
+// ==========================================
+const SUPABASE_URL = "https://your-project-id.supabase.co";
+const SUPABASE_ANON_KEY = "your-anon-key-here";
+
+// Initialize Supabase Client
+let supabaseObj = null;
+const isSupabaseConfigured = SUPABASE_URL && SUPABASE_URL !== "https://your-project-id.supabase.co" && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== "your-anon-key-here";
+
+if (isSupabaseConfigured) {
+  try {
+    supabaseObj = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log("Supabase Client initialized successfully!");
+  } catch (e) {
+    console.error("Failed to initialize Supabase client:", e);
+  }
+} else {
+  console.log("Supabase is not configured. Running in LocalStorage fallback mode.");
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
   setupContactForm();
@@ -157,7 +178,7 @@ function setupCodeTerminalAnimation() {
 }
 
 /**
- * Setup and manage the optional Authentication Modal
+ * Setup and manage the Authentication Modal (Supabase with LocalStorage fallback)
  */
 function setupAuthModal() {
   const authBtn = document.getElementById('authBtn');
@@ -185,14 +206,28 @@ function setupAuthModal() {
   // Initialize and check persistent session on load
   checkSession();
 
-  function checkSession() {
-    const session = localStorage.getItem('auth_session');
-    if (session) {
+  async function checkSession() {
+    if (isSupabaseConfigured && supabaseObj) {
       try {
-        const userData = JSON.parse(session);
-        logIn(userData.name);
+        const { data: { session }, error } = await supabaseObj.auth.getSession();
+        if (session && session.user) {
+          const name = session.user.user_metadata?.full_name || session.user.email.split('@')[0];
+          logIn(name);
+        } else {
+          localStorage.removeItem('auth_session');
+        }
       } catch (e) {
-        localStorage.removeItem('auth_session');
+        console.error("Supabase session check error:", e);
+      }
+    } else {
+      const session = localStorage.getItem('auth_session');
+      if (session) {
+        try {
+          const userData = JSON.parse(session);
+          logIn(userData.name);
+        } catch (e) {
+          localStorage.removeItem('auth_session');
+        }
       }
     }
   }
@@ -257,9 +292,17 @@ function setupAuthModal() {
     authBtn.classList.add('btn-outline');
   }
 
-  function logOut() {
+  async function logOut() {
     isLoggedIn = false;
     localStorage.removeItem('auth_session');
+    
+    if (isSupabaseConfigured && supabaseObj) {
+      try {
+        await supabaseObj.auth.signOut();
+      } catch (e) {
+        console.error("Supabase signOut error:", e);
+      }
+    }
     
     authBtn.textContent = 'Sign In';
     authBtn.classList.add('btn-primary');
@@ -311,7 +354,7 @@ function setupAuthModal() {
   });
 
   // Sign In submit
-  signInForm.addEventListener('submit', (e) => {
+  signInForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearErrors();
     
@@ -322,41 +365,75 @@ function setupAuthModal() {
     submitBtn.textContent = 'Signing In...';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      submitBtn.textContent = 'Sign In';
-      submitBtn.disabled = false;
+    if (isSupabaseConfigured && supabaseObj) {
+      // Live Supabase Authentication
+      try {
+        const { data, error } = await supabaseObj.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
 
-      // Get registered users
-      const users = JSON.parse(localStorage.getItem('auth_users') || '[]');
-      const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+        submitBtn.textContent = 'Sign In';
+        submitBtn.disabled = false;
 
-      if (!user) {
-        signinError.textContent = 'User not found. Please Sign Up first.';
+        if (error) {
+          signinError.textContent = error.message;
+          signinError.classList.remove('hidden');
+          return;
+        }
+
+        const userName = data.user.user_metadata?.full_name || email.split('@')[0];
+        localStorage.setItem('auth_session', JSON.stringify({ name: userName, email: data.user.email }));
+        signInForm.reset();
+        
+        signInForm.classList.add('hidden');
+        authStatusMessage.classList.remove('hidden');
+        authStatusTitle.textContent = 'Welcome Back!';
+        authStatusDesc.textContent = `Successfully logged in as ${userName}. You now have workspace access.`;
+        
+        logIn(userName);
+      } catch (err) {
+        submitBtn.textContent = 'Sign In';
+        submitBtn.disabled = false;
+        signinError.textContent = 'An unexpected error occurred. Please try again.';
         signinError.classList.remove('hidden');
-        return;
       }
+    } else {
+      // LocalStorage Fallback
+      setTimeout(() => {
+        submitBtn.textContent = 'Sign In';
+        submitBtn.disabled = false;
 
-      if (user.password !== password) {
-        signinError.textContent = 'Incorrect password. Please try again.';
-        signinError.classList.remove('hidden');
-        return;
-      }
+        const users = JSON.parse(localStorage.getItem('auth_users') || '[]');
+        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
-      // Successful login
-      localStorage.setItem('auth_session', JSON.stringify({ name: user.name, email: user.email }));
-      signInForm.reset();
-      
-      signInForm.classList.add('hidden');
-      authStatusMessage.classList.remove('hidden');
-      authStatusTitle.textContent = 'Welcome Back!';
-      authStatusDesc.textContent = `Successfully logged in as ${user.name}. You now have workspace access.`;
-      
-      logIn(user.name);
-    }, 800);
+        if (!user) {
+          signinError.textContent = 'User not found. Please Sign Up first (or configure Supabase credentials).';
+          signinError.classList.remove('hidden');
+          return;
+        }
+
+        if (user.password !== password) {
+          signinError.textContent = 'Incorrect password. Please try again.';
+          signinError.classList.remove('hidden');
+          return;
+        }
+
+        localStorage.setItem('auth_session', JSON.stringify({ name: user.name, email: user.email }));
+        signInForm.reset();
+        
+        signInForm.classList.add('hidden');
+        authStatusMessage.classList.remove('hidden');
+        authStatusTitle.textContent = 'Welcome Back!';
+        authStatusDesc.textContent = `Successfully logged in as ${user.name}. You now have workspace access.`;
+        
+        logIn(user.name);
+      }, 800);
+    }
   });
 
   // Sign Up submit
-  signUpForm.addEventListener('submit', (e) => {
+  signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearErrors();
     
@@ -368,35 +445,74 @@ function setupAuthModal() {
     submitBtn.textContent = 'Creating Account...';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      submitBtn.textContent = 'Create Account';
-      submitBtn.disabled = false;
+    if (isSupabaseConfigured && supabaseObj) {
+      // Live Supabase Sign Up
+      try {
+        const { data, error } = await supabaseObj.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: {
+              full_name: name
+            }
+          }
+        });
 
-      // Get registered users
-      const users = JSON.parse(localStorage.getItem('auth_users') || '[]');
-      
-      // Check if email already registered
-      if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
-        signupError.textContent = 'This email is already registered. Please Sign In.';
+        submitBtn.textContent = 'Create Account';
+        submitBtn.disabled = false;
+
+        if (error) {
+          signupError.textContent = error.message;
+          signupError.classList.remove('hidden');
+          return;
+        }
+
+        signUpForm.reset();
+        signUpForm.classList.add('hidden');
+        authStatusMessage.classList.remove('hidden');
+        authStatusTitle.textContent = 'Account Created!';
+        
+        if (data.session) {
+          authStatusDesc.textContent = `Welcome ${name}! Your account has been registered and you are logged in.`;
+          logIn(name);
+          localStorage.setItem('auth_session', JSON.stringify({ name, email }));
+        } else {
+          authStatusDesc.textContent = `Welcome ${name}! Please check your email inbox to confirm your registration.`;
+        }
+      } catch (err) {
+        submitBtn.textContent = 'Create Account';
+        submitBtn.disabled = false;
+        signupError.textContent = 'An unexpected error occurred. Please try again.';
         signupError.classList.remove('hidden');
-        return;
       }
+    } else {
+      // LocalStorage Fallback
+      setTimeout(() => {
+        submitBtn.textContent = 'Create Account';
+        submitBtn.disabled = false;
 
-      // Add new user
-      users.push({ name, email, password });
-      localStorage.setItem('auth_users', JSON.stringify(users));
+        const users = JSON.parse(localStorage.getItem('auth_users') || '[]');
+        
+        if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+          signupError.textContent = 'This email is already registered. Please Sign In.';
+          signupError.classList.remove('hidden');
+          return;
+        }
 
-      // Successful sign up and auto-login
-      localStorage.setItem('auth_session', JSON.stringify({ name, email }));
-      signUpForm.reset();
-      
-      signUpForm.classList.add('hidden');
-      authStatusMessage.classList.remove('hidden');
-      authStatusTitle.textContent = 'Account Created!';
-      authStatusDesc.textContent = `Welcome ${name}! Your account has been registered.`;
-      
-      logIn(name);
-    }, 1000);
+        users.push({ name, email, password });
+        localStorage.setItem('auth_users', JSON.stringify(users));
+
+        localStorage.setItem('auth_session', JSON.stringify({ name, email }));
+        signUpForm.reset();
+        
+        signUpForm.classList.add('hidden');
+        authStatusMessage.classList.remove('hidden');
+        authStatusTitle.textContent = 'Account Created!';
+        authStatusDesc.textContent = `Welcome ${name}! Your account has been registered.`;
+        
+        logIn(name);
+      }, 1000);
+    }
   });
 
   authStatusCloseBtn.addEventListener('click', closeModal);
