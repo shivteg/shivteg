@@ -1827,3 +1827,18 @@ footer {
     padding: 2rem 1.5rem;
   }
 }
+
+.auth-error-msg {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: var(--color-error);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  text-align: center;
+  width: 100%;
+}
+
+.auth-error-msg.hidden {
+  display: none !important;
+}

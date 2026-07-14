@@ -170,6 +170,9 @@ function setupAuthModal() {
   const signInForm = document.getElementById('signInForm');
   const signUpForm = document.getElementById('signUpForm');
   
+  const signinError = document.getElementById('signinError');
+  const signupError = document.getElementById('signupError');
+  
   const authStatusMessage = document.getElementById('authStatusMessage');
   const authStatusTitle = document.getElementById('authStatusTitle');
   const authStatusDesc = document.getElementById('authStatusDesc');
@@ -179,6 +182,21 @@ function setupAuthModal() {
 
   if (!authModal) return;
 
+  // Initialize and check persistent session on load
+  checkSession();
+
+  function checkSession() {
+    const session = localStorage.getItem('auth_session');
+    if (session) {
+      try {
+        const userData = JSON.parse(session);
+        logIn(userData.name);
+      } catch (e) {
+        localStorage.removeItem('auth_session');
+      }
+    }
+  }
+
   // Toggle modal open/close
   function openModal() {
     if (isLoggedIn) {
@@ -187,7 +205,7 @@ function setupAuthModal() {
       return;
     }
     authModal.classList.remove('hidden');
-    // Reset form display
+    clearErrors();
     showTab('signin');
     document.body.style.overflow = 'hidden';
   }
@@ -197,8 +215,20 @@ function setupAuthModal() {
     document.body.style.overflow = '';
   }
 
+  function clearErrors() {
+    if (signinError) {
+      signinError.textContent = '';
+      signinError.classList.add('hidden');
+    }
+    if (signupError) {
+      signupError.textContent = '';
+      signupError.classList.add('hidden');
+    }
+  }
+
   function showTab(tab) {
     authStatusMessage.classList.add('hidden');
+    clearErrors();
     if (tab === 'signin') {
       tabSignInBtn.classList.add('active');
       tabSignUpBtn.classList.remove('active');
@@ -212,27 +242,33 @@ function setupAuthModal() {
     }
   }
 
-  function logIn(username) {
+  function logIn(displayName) {
     isLoggedIn = true;
     authBtn.textContent = 'Sign Out';
-    mobileAuthBtn.textContent = 'Sign Out';
+    if (mobileAuthBtn) {
+      mobileAuthBtn.textContent = 'Sign Out';
+      mobileAuthBtn.style.background = 'var(--color-bg-card)';
+      mobileAuthBtn.style.color = 'var(--color-primary-light)';
+      mobileAuthBtn.style.borderColor = 'var(--color-primary)';
+    }
     
     // Add success styling/glow to indicate active state
     authBtn.classList.remove('btn-primary');
     authBtn.classList.add('btn-outline');
-    mobileAuthBtn.style.background = 'var(--color-bg-card)';
-    mobileAuthBtn.style.color = 'var(--color-primary-light)';
-    mobileAuthBtn.style.borderColor = 'var(--color-primary)';
   }
 
   function logOut() {
     isLoggedIn = false;
-    authBtn.textContent = 'Sign In';
-    mobileAuthBtn.textContent = 'Sign In';
+    localStorage.removeItem('auth_session');
     
+    authBtn.textContent = 'Sign In';
     authBtn.classList.add('btn-primary');
     authBtn.classList.remove('btn-outline');
-    mobileAuthBtn.style = '';
+    
+    if (mobileAuthBtn) {
+      mobileAuthBtn.textContent = 'Sign In';
+      mobileAuthBtn.style = '';
+    }
     
     alert('Logged out successfully.');
   }
@@ -246,10 +282,10 @@ function setupAuthModal() {
       const overlay = document.querySelector('.sidebar-overlay');
       const menuOpenIcon = document.querySelector('.menu-open-icon');
       const menuCloseIcon = document.querySelector('.menu-close-icon');
-      sidebar.classList.remove('open');
-      overlay.classList.remove('open');
-      menuOpenIcon.classList.remove('hidden');
-      menuCloseIcon.classList.add('hidden');
+      if (sidebar) sidebar.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+      if (menuOpenIcon) menuOpenIcon.classList.remove('hidden');
+      if (menuCloseIcon) menuCloseIcon.classList.add('hidden');
       
       openModal();
     });
@@ -268,53 +304,99 @@ function setupAuthModal() {
   tabSignInBtn.addEventListener('click', () => showTab('signin'));
   tabSignUpBtn.addEventListener('click', () => showTab('signup'));
 
+  // Hide errors on input typing
+  const allAuthInputs = authModal.querySelectorAll('.form-input');
+  allAuthInputs.forEach(input => {
+    input.addEventListener('input', clearErrors);
+  });
+
   // Sign In submit
   signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const email = document.getElementById('signinEmail').value;
+    clearErrors();
+    
+    const email = document.getElementById('signinEmail').value.trim();
+    const password = document.getElementById('signinPassword').value;
     const submitBtn = signInForm.querySelector('.auth-submit-btn');
     
     submitBtn.textContent = 'Signing In...';
     submitBtn.disabled = true;
 
     setTimeout(() => {
-      // Mock Success
       submitBtn.textContent = 'Sign In';
       submitBtn.disabled = false;
+
+      // Get registered users
+      const users = JSON.parse(localStorage.getItem('auth_users') || '[]');
+      const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+
+      if (!user) {
+        signinError.textContent = 'User not found. Please Sign Up first.';
+        signinError.classList.remove('hidden');
+        return;
+      }
+
+      if (user.password !== password) {
+        signinError.textContent = 'Incorrect password. Please try again.';
+        signinError.classList.remove('hidden');
+        return;
+      }
+
+      // Successful login
+      localStorage.setItem('auth_session', JSON.stringify({ name: user.name, email: user.email }));
       signInForm.reset();
       
       signInForm.classList.add('hidden');
       authStatusMessage.classList.remove('hidden');
       authStatusTitle.textContent = 'Welcome Back!';
-      authStatusDesc.textContent = `Successfully logged in as ${email}. You now have workspace access.`;
+      authStatusDesc.textContent = `Successfully logged in as ${user.name}. You now have workspace access.`;
       
-      logIn(email.split('@')[0]);
-    }, 1000);
+      logIn(user.name);
+    }, 800);
   });
 
   // Sign Up submit
   signUpForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('signupName').value;
-    const email = document.getElementById('signupEmail').value;
+    clearErrors();
+    
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
     const submitBtn = signUpForm.querySelector('.auth-submit-btn');
     
     submitBtn.textContent = 'Creating Account...';
     submitBtn.disabled = true;
 
     setTimeout(() => {
-      // Mock Success
       submitBtn.textContent = 'Create Account';
       submitBtn.disabled = false;
+
+      // Get registered users
+      const users = JSON.parse(localStorage.getItem('auth_users') || '[]');
+      
+      // Check if email already registered
+      if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        signupError.textContent = 'This email is already registered. Please Sign In.';
+        signupError.classList.remove('hidden');
+        return;
+      }
+
+      // Add new user
+      users.push({ name, email, password });
+      localStorage.setItem('auth_users', JSON.stringify(users));
+
+      // Successful sign up and auto-login
+      localStorage.setItem('auth_session', JSON.stringify({ name, email }));
       signUpForm.reset();
       
       signUpForm.classList.add('hidden');
       authStatusMessage.classList.remove('hidden');
       authStatusTitle.textContent = 'Account Created!';
-      authStatusDesc.textContent = `Welcome ${name}! Your account has been registered with ${email}.`;
+      authStatusDesc.textContent = `Welcome ${name}! Your account has been registered.`;
       
       logIn(name);
-    }, 1200);
+    }, 1000);
   });
 
   authStatusCloseBtn.addEventListener('click', closeModal);
