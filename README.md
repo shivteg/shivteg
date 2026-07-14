@@ -1,80 +1,78 @@
-<div align="center">
-  <img src="./profile_banner.jpg" alt="Shivteg Tech Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
+# Shivteg Portfolio Website 🚀
 
-  # 🚀 Hi, I'm Shivteg!
-  **Creative Frontend Developer • Student • Web Game Creator**
-  
-  *Turning imaginative ideas into clean, interactive, and functional code.*
+A modern, highly polished, premium dark-themed developer portfolio website custom-engineered for **Shivteg** — Student, Frontend Developer, and Creative Tech Creator.
 
-  [Portfolio](https://shivteg-portfolio.vercel.app) • [Email](mailto:tegworkmail@gmail.com) • [LinkedIn](https://linkedin.com)
-</div>
+Inspired by premium design aesthetics (glassmorphism, dark themes, and rich accents), this single-page landing page showcases Shivteg's projects, timeline journey, skills, and contact details.
 
----
+## 🌟 Key Features
 
-## 👨‍💻 Who is Shivteg?
-
-I am a passionate student and self-taught developer dedicated to building interactive web applications, retro arcade games, and creative digital experiences.
-
-I specialize in crafting responsive, user-friendly interfaces, interactive canvas animations, and gamified web tools. I am always exploring the cutting edge of web development, AI-assisted content creation, and modern UI/UX design trends to turn imaginative ideas into clean, functional code.
-
----
-
-## 🏆 Key Highlights
-
-- **🏆 Youngest Ever:** Dedicated to building websites and launching live web products.
-- **⚡ Prolific Creator:** Created and deployed **6+ interactive web applications** on Vercel.
-- **🎓 Gamified Education:** Built custom gamified educational platforms to make learning fun and rewarding for students.
-- **🌐 Self-Taught Journey:** Learning, experimenting, and coding something new every single day.
+*   **Premium Visual Aesthetics**: Uses a sleek black theme (`#0a0a0a`) with glowing Amber Gold and Cyan accent details, responsive glassmorphic cards, custom typography using Clash Display & General Sans, and dynamic hover animations.
+*   **3D Interactive Terminal**: The hero features an interactive glass-themed IDE terminal box that dynamically tilts relative to the user's cursor position.
+*   **Grid Showcase**: Features a custom grid displaying **6 live projects** hosted on Vercel:
+    1.  [shivanimate.vercel.app](https://shivanimate.vercel.app)
+    2.  [shivplayzone.vercel.app](https://shivplayzone.vercel.app)
+    3.  [shivtegs-snake.vercel.app](https://shivtegs-snake.vercel.app)
+    4.  [Edu-Play-Gold.vercel.app](https://edu-play-gold.vercel.app)
+    5.  [shivblogs.vercel.app](https://shivblogs.vercel.app)
+    6.  [shivteg-portfolio.vercel.app](https://shivteg-portfolio.vercel.app)
+*   **Key Highlights**: Highlight panels with stats showing Shivteg's achievements (Youngest ever to make website, Learning Stage, 1 Country reached, clients omitted).
+*   **Interactive Forms**: Clean, styled contact form that simulates submissions with instant feedback alerts, redirecting directly to primary email: `tegworkmail@gmail.com`.
+*   **Mobile Optimized**: Responsive nav links, sticky navbar header with blur filter, and a slide-out sidebar overlay menu for smaller screens.
 
 ---
 
-## 🛠️ My Tech Toolbox
+## 🛠️ Technology Stack
 
-### **Frontend & Interface**
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
-
-### **Creative & Interactive**
-- 🎨 **Canvas Animations & SVG Graphic Design**
-- 🎮 **Game Logic & Retro Arcade Systems**
-- ✨ **Responsive UI/UX & Interactive Web Experiences**
-
-### **Workflows & Tools**
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+*   **HTML5** – Semantic elements, structured sections, and inline SVG icons.
+*   **Vanilla CSS3** – Flexbox, Grid, custom animations, transitions, and CSS variables.
+*   **JavaScript (ES6)** – Mobile navigation interactions, smooth scroll, form validation, active navbar link tracking, and 3D hover effects.
+*   **Vite** – Development server and optimized bundler.
 
 ---
 
-## 💻 Featured Live Projects
+## 🚀 Getting Started
 
-Here are some of the interactive applications I've built and deployed:
+### Prerequisites
 
-| Project | Description | Live Link |
-| :--- | :--- | :--- |
-| **✨ ShivAnimate** | Animate your name and try creative text effects. | [Visit Site](https://shivanimate.vercel.app) |
-| **🧩 ShivPlayzone** | Image puzzle game where time decreases as levels increase. | [Visit Site](https://shivplayzone.vercel.app) |
-| **🐍 Shivteg's Snake Game** | Classic arcade-inspired retro snake game with high score tracking. | [Visit Site](https://shivtegs-snake.vercel.app) |
-| **🎓 Edu-Play-Gold** | Gamified educational platform designed to reward student learning. | [Visit Site](https://Edu-Play-Gold.vercel.app) |
-| **📝 ShivBlogs** | Full-featured modern blogging platform with clean layout. | [Visit Site](https://shivblogs.vercel.app) |
-| **💻 Shivteg Portfolio** | My comprehensive developer showcase hub. | [Visit Site](https://shivteg-portfolio.vercel.app) |
+Make sure you have Node.js installed to run the local dev server.
+
+### Installation
+
+1. Clone or open this repository directory.
+2. Open your terminal in this directory and install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the local development server:
+   ```bash
+   npm run dev
+   ```
+4. Build the static distribution bundle:
+   ```bash
+   npm run build
+   ```
 
 ---
 
-<details>
-<summary><b>⚙️ About This Repository (Live Portfolio Codebase)</b></summary>
+## 🔗 Supabase Authentication Configuration
 
-This repository also hosts the codebase for my live portfolio website. You can explore the source files here:
-- [index.html](file:///C:/Users/user/shivteg/index.html) — Portfolio structure & markup
-- [style.css](file:///C:/Users/user/shivteg/style.css) — Theme custom styles & layouts
-- [script.js](file:///C:/Users/user/shivteg/script.js) — Interactive terminal & auth logics
-- [GEMINI.md](file:///C:/Users/user/shivteg/GEMINI.md) — Technical codebase roadmap for LLMs
-</details>
+To connect this website to your live **Supabase** backend:
 
-<div align="center">
-  <br />
-  <img src="https://komarev.com/ghpvc/?username=shivteg&color=f59e0b&style=flat-square&label=Profile+Views" alt="Profile Views" />
-</div>
+1. Open [script.js](file:///C:/Users/user/shivteg/script.js) and locate the configuration variables at the top:
+   ```javascript
+   const SUPABASE_URL = "https://your-project-id.supabase.co";
+   const SUPABASE_ANON_KEY = "your-anon-key-here";
+   ```
+2. Replace these strings with your actual **Supabase API URL** and **Anonymous Public Key** from your Supabase dashboard (Project Settings > API).
+3. Ensure that **Email Authentication** is enabled in your Supabase project under *Authentication > Providers*.
+4. Once configured, the website will automatically connect to your database for live `signUp`, `signInWithPassword`, and `signOut` user sessions!
+
+*Note: If the placeholders are left intact, the application automatically falls back to local-storage session simulation so it remains testable.*
+
+---
+
+## 📬 Contact & Connect
+
+*   **Email**: [tegworkmail@gmail.com](mailto:tegworkmail@gmail.com)
+*   **LinkedIn**: [Shivteg on LinkedIn](https://linkedin.com)
+*   **GitHub**: [Shivteg on GitHub](https://github.com)

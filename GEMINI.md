@@ -1,39 +1,80 @@
-# Shivteg Portfolio Website - Project Context & Instructions
+<div align="center">
+  <img src="./profile_banner.jpg" alt="Shivteg Tech Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
 
-## Overview
-**Shivteg Portfolio** is a premium, dark-themed developer portfolio website custom-engineered for **Shivteg** — Student, Frontend Developer, and Creative Tech Creator. It highlights key metrics, projects, skills, and coding journey milestones, featuring interactive components like a cursor-reactive 3D code terminal and an integrated Authentication modal supporting live Supabase authentication with a simulated LocalStorage fallback.
+  # 🚀 Hi, I'm Shivteg!
+  **Creative Frontend Developer • Student • Web Game Creator**
+  
+  *Turning imaginative ideas into clean, interactive, and functional code.*
 
-## Tech Stack
-- **Frontend Core:** HTML5 (Semantic tags), Vanilla CSS3 (Custom design system, flexbox, grid, transitions, animations), ES6+ JavaScript.
-- **Dependencies:** [Vite](https://vitejs.dev/) for development server and bundling optimization.
-- **Authentication & Database:** [Supabase](https://supabase.com/) client integration (loaded via v2 CDN script).
+  [Portfolio](https://shivteg-portfolio.vercel.app) • [Email](mailto:tegworkmail@gmail.com) • [LinkedIn](https://linkedin.com)
+</div>
 
-## Architecture & Features
+---
 
-### Core Layout
-The application is structured as a responsive single-page application. Styling is driven by vanilla CSS using custom CSS variables (design tokens) defined in `:root` inside [style.css](file:///C:/Users/user/shivteg/style.css), creating a sleek black aesthetic (`#0a0a0a`) with glowing Amber Gold and Cyan accent highlights.
+## 👨‍💻 Who is Shivteg?
 
-### Interactive Elements
-- **3D Interactive Terminal:** The hero section features a code terminal component that tracks the mouse position (`mousemove`) inside [setupCodeTerminalAnimation()](file:///C:/Users/user/shivteg/script.js#L151-L178) to compute relative offsets and dynamically apply a 3D perspective rotation tilt.
-- **Active Navigation Highlighting:** Scroll progress is tracked in [setupScrollEffects()](file:///C:/Users/user/shivteg/script.js#L109-L146) to automatically apply styling to active navigation links and adjust the transparency of the header navbar.
-- **Mobile Drawer Menu:** Sidebar overlay and toggle handles are configured via [setupMobileMenu()](file:///C:/Users/user/shivteg/script.js#L35-L67) to ensure responsive compatibility.
-- **Simulated Contact Form:** Located under [setupContactForm()](file:///C:/Users/user/shivteg/script.js#L72-L104), this function intercepts form submissions, provides UI success feedback, and clears fields.
+I am a passionate student and self-taught developer dedicated to building interactive web applications, retro arcade games, and creative digital experiences.
 
-### Authentication & Sessions
-Managed within [setupAuthModal()](file:///C:/Users/user/shivteg/script.js#L183-L519):
-- **Live Supabase Authentication:** Uses credentials defined in [SUPABASE_URL](file:///C:/Users/user/shivteg/script.js#L6) and [SUPABASE_ANON_KEY](file:///C:/Users/user/shivteg/script.js#L7) to register, authenticate, and sign out users.
-- **LocalStorage Fallback:** If Supabase constants remain at their default values, the app automatically pivots to local state simulation, reading/writing mock users inside `localStorage` (`auth_session`, `auth_users`).
-- **Session Restoration:** On initialization, [checkSession()](file:///C:/Users/user/shivteg/script.js#L209-L233) checks for active sessions to keep the user signed in across page reloads.
+I specialize in crafting responsive, user-friendly interfaces, interactive canvas animations, and gamified web tools. I am always exploring the cutting edge of web development, AI-assisted content creation, and modern UI/UX design trends to turn imaginative ideas into clean, functional code.
 
-## Development Guidelines
+---
 
-- **Maintain Aesthetic System:** Always reuse design tokens from `:root` in [style.css](file:///C:/Users/user/shivteg/style.css) (such as `--color-primary` for amber gold and `--color-secondary` for cyan) to preserve the design theme.
-- **Configuring Supabase:** In production, replace the placeholder credentials in [script.js](file:///C:/Users/user/shivteg/script.js#L6-L7) with your actual live project URL and anon public key.
-- **Adding Projects:** Add new project entries into the `.websites-grid` container within [index.html](file:///C:/Users/user/shivteg/index.html#L226-L348).
+## 🏆 Key Highlights
 
-## Key Files
-- [index.html](file:///C:/Users/user/shivteg/index.html) – The main markup file, structuring sections, svg icons, auth modal, and Supabase client script.
-- [style.css](file:///C:/Users/user/shivteg/style.css) – Design system variables, layout styles, glows, keyframes, transitions, and media queries.
-- [script.js](file:///C:/Users/user/shivteg/script.js) – App behavior controls: terminal tilts, navigation highlighters, forms, and Supabase auth flows.
-- [package.json](file:///C:/Users/user/shivteg/package.json) – Handles dependencies (Vite) and development environment commands.
-- [README.md](file:///C:/Users/user/shivteg/README.md) – Portfolio project readme file.
+- **🏆 Youngest Ever:** Dedicated to building websites and launching live web products.
+- **⚡ Prolific Creator:** Created and deployed **6+ interactive web applications** on Vercel.
+- **🎓 Gamified Education:** Built custom gamified educational platforms to make learning fun and rewarding for students.
+- **🌐 Self-Taught Journey:** Learning, experimenting, and coding something new every single day.
+
+---
+
+## 🛠️ My Tech Toolbox
+
+### **Frontend & Interface**
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
+
+### **Creative & Interactive**
+- 🎨 **Canvas Animations & SVG Graphic Design**
+- 🎮 **Game Logic & Retro Arcade Systems**
+- ✨ **Responsive UI/UX & Interactive Web Experiences**
+
+### **Workflows & Tools**
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+---
+
+## 💻 Featured Live Projects
+
+Here are some of the interactive applications I've built and deployed:
+
+| Project | Description | Live Link |
+| :--- | :--- | :--- |
+| **✨ ShivAnimate** | Animate your name and try creative text effects. | [Visit Site](https://shivanimate.vercel.app) |
+| **🧩 ShivPlayzone** | Image puzzle game where time decreases as levels increase. | [Visit Site](https://shivplayzone.vercel.app) |
+| **🐍 Shivteg's Snake Game** | Classic arcade-inspired retro snake game with high score tracking. | [Visit Site](https://shivtegs-snake.vercel.app) |
+| **🎓 Edu-Play-Gold** | Gamified educational platform designed to reward student learning. | [Visit Site](https://Edu-Play-Gold.vercel.app) |
+| **📝 ShivBlogs** | Full-featured modern blogging platform with clean layout. | [Visit Site](https://shivblogs.vercel.app) |
+| **💻 Shivteg Portfolio** | My comprehensive developer showcase hub. | [Visit Site](https://shivteg-portfolio.vercel.app) |
+
+---
+
+<details>
+<summary><b>⚙️ About This Repository (Live Portfolio Codebase)</b></summary>
+
+This repository also hosts the codebase for my live portfolio website. You can explore the source files here:
+- [index.html](file:///C:/Users/user/shivteg/index.html) — Portfolio structure & markup
+- [style.css](file:///C:/Users/user/shivteg/style.css) — Theme custom styles & layouts
+- [script.js](file:///C:/Users/user/shivteg/script.js) — Interactive terminal & auth logics
+- [GEMINI.md](file:///C:/Users/user/shivteg/GEMINI.md) — Technical codebase roadmap for LLMs
+</details>
+
+<div align="center">
+  <br />
+  <img src="https://komarev.com/ghpvc/?username=shivteg&color=f59e0b&style=flat-square&label=Profile+Views" alt="Profile Views" />
+</div>
