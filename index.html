@@ -51,6 +51,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           tegworkmail@gmail.com
         </a>
+        <button class="btn btn-primary nav-signin-btn hide-mobile" id="authBtn">Sign In</button>
         <button class="mobile-menu-toggle show-mobile" aria-label="Toggle Menu">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-open-icon"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-close-icon hidden"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
@@ -76,6 +77,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         tegworkmail@gmail.com
       </a>
+      <button class="sidebar-signin-btn" id="mobileAuthBtn">Sign In</button>
     </div>
   </div>
   <div class="sidebar-overlay"></div>
@@ -581,6 +583,99 @@
       </div>
     </div>
   </footer>
+
+  <!-- Optional Authentication Modal -->
+  <div id="authModal" class="auth-modal-overlay hidden">
+    <div class="auth-modal-card">
+      <button class="auth-modal-close" id="closeAuthBtn" aria-label="Close Modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabSignInBtn">Sign In</button>
+        <button class="auth-tab-btn" id="tabSignUpBtn">Sign Up</button>
+      </div>
+      
+      <!-- Sign In Form -->
+      <form id="signInForm" class="auth-form-content">
+        <h3 class="auth-form-title">Welcome Back</h3>
+        <p class="auth-form-subtitle">Access your account workspace</p>
+        
+        <div class="form-group">
+          <label for="signinEmail">Email Address</label>
+          <input type="email" id="signinEmail" required placeholder="john@example.com" class="form-input">
+        </div>
+        
+        <div class="form-group">
+          <label for="signinPassword">Password</label>
+          <input type="password" id="signinPassword" required placeholder="••••••••" class="form-input">
+        </div>
+        
+        <button type="submit" class="btn btn-primary auth-submit-btn">Sign In</button>
+        
+        <div class="auth-divider">
+          <span>Or continue with</span>
+        </div>
+        
+        <div class="auth-social-buttons">
+          <button type="button" class="auth-social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </button>
+          <button type="button" class="auth-social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+            Google
+          </button>
+        </div>
+      </form>
+      
+      <!-- Sign Up Form -->
+      <form id="signUpForm" class="auth-form-content hidden">
+        <h3 class="auth-form-title">Create Account</h3>
+        <p class="auth-form-subtitle">Join the creative tech workspace</p>
+        
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" required placeholder="John Doe" class="form-input">
+        </div>
+        
+        <div class="form-group">
+          <label for="signupEmail">Email Address</label>
+          <input type="email" id="signupEmail" required placeholder="john@example.com" class="form-input">
+        </div>
+        
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" required placeholder="••••••••" class="form-input">
+        </div>
+        
+        <button type="submit" class="btn btn-primary auth-submit-btn">Create Account</button>
+        
+        <div class="auth-divider">
+          <span>Or continue with</span>
+        </div>
+        
+        <div class="auth-social-buttons">
+          <button type="button" class="auth-social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </button>
+          <button type="button" class="auth-social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+            Google
+          </button>
+        </div>
+      </form>
+      
+      <!-- Status Success Panel -->
+      <div id="authStatusMessage" class="auth-status-panel hidden">
+        <div class="auth-success-icon">✓</div>
+        <h3 id="authStatusTitle">Success!</h3>
+        <p id="authStatusDesc">You have successfully signed in.</p>
+        <button type="button" class="btn btn-primary" id="authStatusCloseBtn" style="margin-top: 1.5rem; width: 100%;">Continue</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
