@@ -60,7 +60,7 @@ Here are some of the interactive applications I've built and deployed:
 | **🐍 Shivteg's Snake Game** | Classic arcade-inspired retro snake game with high score tracking. | [Visit Site](https://shivtegs-snake.vercel.app) |
 | **🎓 Edu-Play-Gold** | Gamified educational platform designed to reward student learning. | [Visit Site](https://Edu-Play-Gold.vercel.app) |
 | **📝 ShivBlogs** | Full-featured modern blogging platform with clean layout. | [Visit Site](https://shivblogs.vercel.app) |
-| **💻 Shivteg Portfolio** | My comprehensive developer showcase hub. | [Visit Site](https://shivteg-portfolio.vercel.app) |
+| **📊 ShivPolls** | An interactive, real-time polling platform where users can easily create custom polls, cast votes instantly, and view live results presented in clean, dynamic visual charts. | [Visit Site](https://shivpolls.vercel.app) |
 
 ---
 

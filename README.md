@@ -66,7 +66,7 @@ Here are the interactive games and web apps I've built and hosted live on Vercel
 *   **🐍 [Shivteg's Snake Game](https://shivtegs-snake.vercel.app)** — Modernized arcade retro snake game with local high score tracking.
 *   **🎓 [Edu-Play-Gold](https://Edu-Play-Gold.vercel.app)** — Gamified educational platform customized to make learning immersive.
 *   **📝 [ShivBlogs](https://shivblogs.vercel.app)** — Clean, responsive blogging portal for sharing ideas and tech updates.
-*   **💻 [Shivteg Portfolio](https://shivteg-portfolio.vercel.app)** — The main hub showcasing all my capabilities, timeline, and projects.
+*   **📊 [ShivPolls](https://shivpolls.vercel.app)** — An interactive, real-time polling platform where users can easily create custom polls, cast votes instantly, and view live results presented in clean, dynamic visual charts.
 
 ---
 
