@@ -31,7 +31,7 @@ I am a **passionate student and self-taught developer** dedicated to building in
 | Highlight | Description |
 | :--- | :--- |
 | **🏆 Youngest Creator** | Youngest ever to design, develop, and launch live web products! |
-| **⚡ Prolific Builder** | Created and deployed **6+ interactive web applications** on Vercel. |
+| **⚡ Prolific Builder** | Created and deployed **7+ interactive web applications** on Vercel. |
 | **🎓 Edu-Tech Pioneer** | Built custom gamified educational platforms to make learning fun and rewarding for students. |
 | **🌐 Daily Learner** | Entirely self-taught, learning and building new digital experiences every day. |
 
@@ -67,6 +67,7 @@ Here are the interactive games and web apps I've built and hosted live on Vercel
 *   **🎓 [Edu-Play-Gold](https://Edu-Play-Gold.vercel.app)** — Gamified educational platform customized to make learning immersive.
 *   **📝 [ShivBlogs](https://shivblogs.vercel.app)** — Clean, responsive blogging portal for sharing ideas and tech updates.
 *   **📊 [ShivPolls](https://shivpolls.vercel.app)** — An interactive, real-time polling platform where users can easily create custom polls, cast votes instantly, and view live results presented in clean, dynamic visual charts.
+*   **🏫 [ShivClassrooms](https://shivclassrooms.vercel.app)** — A real-time classroom check-in dashboard where students send live emoji feedback on lessons, and teachers adapt teaching with live analytics and Gemini AI reports.
 
 ---
 
