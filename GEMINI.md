@@ -61,7 +61,7 @@ Here are some of the interactive applications I've built and deployed:
 | **🎓 Edu-Play-Gold** | Gamified educational platform designed to reward student learning. | [Visit Site](https://Edu-Play-Gold.vercel.app) |
 | **📝 ShivBlogs** | Full-featured modern blogging platform with clean layout. | [Visit Site](https://shivblogs.vercel.app) |
 | **📊 ShivPolls** | An interactive, real-time polling platform where users can easily create custom polls, cast votes instantly, and view live results presented in clean, dynamic visual charts. | [Visit Site](https://shivpolls.vercel.app) |
-| **🏫 ShivClassrooms** | Real-time classroom feedback dashboard with live emoji check-ins and Gemini AI reporting. | [Visit Site](https://shivclassrooms.vercel.app) |
+| **🏫 ShivClassrooms** | Real-time classroom feedback dashboard with live emoji check-ins and Gemini AI reporting. | [Visit Site](https://shivapps.zeroaitech.tech) |
 
 ---
 
