@@ -85,21 +85,43 @@ function setupContactForm() {
     statusDiv.textContent = 'Sending message...';
     statusDiv.className = 'form-status';
 
-    // Simulate standard frontend form submission delay
-    setTimeout(() => {
-      // Direct success prompt
-      statusDiv.textContent = `Thank you, ${name}! Your message has been sent. I will get back to you at ${email} shortly.`;
-      statusDiv.className = 'form-status success';
-      
-      // Reset the form fields
-      form.reset();
+    // Send actual email using formsubmit.co AJAX API
+    fetch("https://formsubmit.co/ajax/official@shivteg.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Direct success prompt
+        statusDiv.textContent = `Thank you, ${name}! Your message has been sent. I will get back to you at ${email} shortly.`;
+        statusDiv.className = 'form-status success';
+        
+        // Reset the form fields
+        form.reset();
 
-      // Clear success status after 6 seconds
-      setTimeout(() => {
-        statusDiv.textContent = '';
-        statusDiv.className = 'form-status';
-      }, 6000);
-    }, 1200);
+        // Clear success status after 6 seconds
+        setTimeout(() => {
+          statusDiv.textContent = '';
+          statusDiv.className = 'form-status';
+        }, 6000);
+    })
+    .catch(error => {
+        statusDiv.textContent = 'Oops! There was a problem submitting your form.';
+        statusDiv.className = 'form-status error';
+        
+        setTimeout(() => {
+          statusDiv.textContent = '';
+          statusDiv.className = 'form-status';
+        }, 6000);
+    });
   });
 }
 
