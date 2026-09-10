@@ -7,7 +7,7 @@
   *Turning imaginative ideas into clean, interactive, and functional code.*
   
   <p align="center">
-    <a href="https://shivteg-portfolio.vercel.app" target="_blank"><img src="https://img.shields.io/badge/Portfolio-f59e0b?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio" /></a>
+    <a href="https://shivteg.com" target="_blank"><img src="https://img.shields.io/badge/Portfolio-f59e0b?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio" /></a>
     <a href="mailto:founder@shivteg.com"><img src="https://img.shields.io/badge/Email-008080?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
     <a href="https://github.com/shivteg"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
   </p>
