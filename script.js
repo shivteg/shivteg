@@ -86,7 +86,7 @@ function setupContactForm() {
     statusDiv.className = 'form-status';
 
     // Send actual email using formsubmit.co AJAX API
-    fetch("https://formsubmit.co/ajax/official@shivteg.com", {
+    fetch("https://formsubmit.co/ajax/founder@shivteg.com", {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',
