@@ -6,7 +6,7 @@
   
   *Turning imaginative ideas into clean, interactive, and functional code.*
 
-  [Portfolio](https://shivteg.com) • [Email](mailto:founder@shivteg.com) • [LinkedIn](https://linkedin.com)
+  [Portfolio](https://shivteg.com) • [Founder Email](mailto:founder@shivteg.com) • [General Inquiries](mailto:info@shivteg.com) • [LinkedIn](https://linkedin.com)
 </div>
 
 ---

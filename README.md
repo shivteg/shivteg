@@ -8,7 +8,8 @@
   
   <p align="center">
     <a href="https://shivteg.com" target="_blank"><img src="https://img.shields.io/badge/Portfolio-f59e0b?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio" /></a>
-    <a href="mailto:founder@shivteg.com"><img src="https://img.shields.io/badge/Email-008080?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+    <a href="mailto:founder@shivteg.com"><img src="https://img.shields.io/badge/Founder-founder@shivteg.com-008080?style=for-the-badge&logo=gmail&logoColor=white" alt="Founder Email" /></a>
+    <a href="mailto:info@shivteg.com"><img src="https://img.shields.io/badge/Info-info@shivteg.com-2563eb?style=for-the-badge&logo=mail.ru&logoColor=white" alt="Info Email" /></a>
     <a href="https://github.com/shivteg"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
   </p>
   
